@@ -12,7 +12,9 @@ import AppMainCharactersVue from "./components/AppMainCharacters.vue";
 import { store } from "./store";
 export default {
   data() {
-    return {};
+    return {
+      store,
+    };
   },
   components: {
     AppHeaderVue,
@@ -20,8 +22,8 @@ export default {
   },
   created() {
     axios.get("https://www.breakingbadapi.com/api/characters").then((resp) => {
-      store.listCharacters = resp.data;
-      console.log(store.listCharacters);
+      this.store.listCharacters = resp.data;
+      console.log(this.store.listCharacters);
     });
   },
 };

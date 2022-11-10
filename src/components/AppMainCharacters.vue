@@ -1,11 +1,17 @@
 <!-- Script -->
 <script>
 // import
+import { store } from "../store";
 import AppCardBrbaVue from "./AppCardBrba.vue";
 export default {
   name: "AppMainCharacters",
   components: {
     AppCardBrbaVue,
+  },
+  data() {
+    return {
+      store,
+    };
   },
 };
 </script>

@@ -3,13 +3,19 @@
 import { store } from "../store";
 export default {
   name: "AppCardBrba",
+  data() {
+    return {
+      store,
+    };
+  },
 };
+console.log(store.listCharacters[0]);
 </script>
 
 <!-- HTML -->
 <template>
   <div class="card">
-    <div class="imgcard">{{}}</div>
+    <div class="imgcard"></div>
   </div>
 </template>
 
