@@ -1,15 +1,18 @@
+<!-- Script -->
 <script>
 export default {
   name: "AppHeader",
 };
 </script>
 
+<!-- Html -->
 <template>
   <header>
     <h1>Breaking Bad Api</h1>
   </header>
 </template>
 
+<!-- Css -->
 <style lang="scss" scoped>
 // HEADER
 header {

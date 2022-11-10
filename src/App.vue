@@ -6,19 +6,30 @@ Creare un componente loader da visualizzare fintantoché i risultati non sono pr
 <!-- SCRIPT -->
 <script>
 // IMPORT
+import axios from "axios";
 import AppHeaderVue from "./components/AppHeader.vue";
+import AppMainCharactersVue from "./components/AppMainCharacters.vue";
+import { store } from "./store";
 export default {
   data() {
     return {};
   },
   components: {
     AppHeaderVue,
+    AppMainCharactersVue,
+  },
+  created() {
+    axios.get("https://www.breakingbadapi.com/api/characters").then((resp) => {
+      store.listCharacters = resp.data;
+      console.log(store.listCharacters);
+    });
   },
 };
 </script>
 <!-- HTML -->
 <template>
   <AppHeaderVue />
+  <AppMainCharactersVue />
 </template>
 <!-- CSS/SCSS -->
 <style lang="scss">

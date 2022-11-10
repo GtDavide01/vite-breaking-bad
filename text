@@ -1,0 +1,12 @@
+<!-- script -->
+<script>
+  export default {
+    name: "AppCardBrba",
+  };
+</script>
+
+<!-- HTML -->
+<template></template>
+
+<!-- Css -->
+<style lang="scss" scoped></style>
