@@ -8,6 +8,7 @@ Creare un componente loader da visualizzare fintantoché i risultati non sono pr
 // IMPORT
 import axios from "axios";
 import AppHeaderVue from "./components/AppHeader.vue";
+import AppSelectedVue from "./components/AppSelected.vue";
 import AppMainCharactersVue from "./components/AppMainCharacters.vue";
 import { store } from "./store";
 export default {
@@ -19,19 +20,53 @@ export default {
   components: {
     AppHeaderVue,
     AppMainCharactersVue,
+    AppSelectedVue,
+  },
+  methods: {
+    filterSeries() {
+      let nameApi = "https://www.breakingbadapi.com/api/characters";
+      if (this.store.filterCategory === "better-call-saul") {
+        nameApi += "?category=Better+Call+Saul";
+        axios.get(nameApi).then((resp) => {
+          this.store.listCharacters = resp.data;
+          this.store.loading = false;
+        });
+      }
+      if (this.store.filterCategory === "breaking-bad") {
+        nameApi += "?category=Breaking+Bad";
+        axios.get(nameApi).then((resp) => {
+          this.store.listCharacters = resp.data;
+          this.store.loading = false;
+        });
+      }
+      if (this.store.filterCategory === "all") {
+        axios.get(nameApi).then((resp) => {
+          this.store.listCharacters = resp.data;
+          this.store.loading = false;
+        });
+      }
+    },
+    getListCharacters() {
+      this.store.loading = true;
+      if (this.store.filterCategory === "") {
+        axios
+          .get("https://www.breakingbadapi.com/api/characters")
+          .then((resp) => {
+            this.store.listCharacters = resp.data;
+            this.store.loading = false;
+          });
+      }
+    },
   },
   created() {
-    this.store.loading = true;
-    axios.get("https://www.breakingbadapi.com/api/characters").then((resp) => {
-      this.store.listCharacters = resp.data;
-      this.store.loading = false;
-    });
+    this.getListCharacters();
   },
 };
 </script>
 <!-- HTML -->
 <template>
   <AppHeaderVue />
+  <AppSelectedVue @filtra="filterSeries" />
   <AppMainCharactersVue />
 </template>
 <!-- CSS/SCSS -->
