@@ -24,7 +24,6 @@ export default {
     this.store.loading = true;
     axios.get("https://www.breakingbadapi.com/api/characters").then((resp) => {
       this.store.listCharacters = resp.data;
-      console.log(this.store.listCharacters);
       this.store.loading = false;
     });
   },
